@@ -36,14 +36,15 @@
     <title>A Broken Web Map</title>
     
     <!-- Leaflet CSS stylesheet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" >
     
     <!-- start of our CSS styles -->
+    <!-- The title text color white blended into the background of the page, used .map not # map-->
     <style>
         h1 {
-            color: white;
+            color: black; 
         }
-        .map {
+        #map {    
             border: 4px solid red;
         }
     </style>
@@ -57,20 +58,21 @@
     <div id="map" style="width: 600px; height: 400px;"></div>
     
     <!-- start of our JavaScript code -->
+     <!--Leaflet JavaScript library, moved above the "let map = L.map('mapElement')"" -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Initialize the map
-        let map = L.map('mapElement')
-        // Center the map on UMD campus, and set the zoom level
-        map.setView([-92.08, 46.82], 15);
+        // Initialize the map, fixed map ID
+        let map = L.map('map')
+        // Center the map on UMD campus, and set the zoom level, swapped coordiantes 
+        map.setView([46.82, -92.08], 15);
         
-        // Add OpenStreetMap tiles
-        const tiles = L.tileLayer('https://tile.openstreetmap.orgg/{z}/{x}/{y}.png', {
+        // Add OpenStreetMap tiles (the org was spelt with two g's)
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
     </script>
         
-    <!-- Leaflet JavaScript library -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
 </body>
 </html>
