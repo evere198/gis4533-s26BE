@@ -31,29 +31,71 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
+        body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
 
-        /* full page leaflet map */
-        
+.header {
+    background-color: Black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.header h1 {
+    margin-bottom: 5px;
+}
+
+.header h3 {
+    margin-top: 0;
+    font-weight: normal;
+}
+
+p {
+    width: 80%;
+    margin: 15px auto;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+}
+
+#map {
+    width: 90%;
+    height: 600px;
+    margin: 20px auto;
+    border: 4px solid #1d3557;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}      
     </style>
 </head>
 <body>
     <!-- Header at the top of the page -->
+    
+</head>
+<body>
+    <!-- Header at the top of the page -->
     <div class="header">
-        <h1>A Mostly Basic Web Map</h1>
-        <h3>by: Your Name Here</h3>
+        <h1>A Basic Web Map Of Duluth</h1>
+        <h3>by: Brandon Everett</h3>
     </div>
-    <div id="map" style="width: 600px; height: 400px;"></div>
+    <div id="map"></div>
     
     <!-- Leaflet JavaScript library -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
-        // Initialize the map, center it on UMD campus, and set the zoom level
-        const map = L.map('map').setView([46.82, -92.08], 13);
+        // Initialize the map, center it on UMD campus, and set the zoom level, adjusted zoom level and setview
+        const map = L.map('map').setView([46.1, -92.1], 11);
 
-        // Add Esri Satellite tiles
-        const tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        // Add Esri Satellite tiles, changed the basemap to a dark theme 
+        const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+        subdomains: 'abcd',
+        maxZoom: 20
         });
         // add tiles to the map
         tiles.addTo(map);
@@ -62,10 +104,24 @@
         const hartleyMarker = L.marker([46.835, -92.089]).addTo(map);
         hartleyMarker.bindPopup("<b>Hartley Nature Center</b><br>A great place to hike and see wildlife!").openPopup();
 
+        // added another marker for canal park
+        const canalParkMarker = L.marker([46.7809, -92.0966]).addTo(map);
+        canalParkMarker.bindPopup("<b>Canal Park</b><br>You can often watch huge ships pass under the Aerial Lift Bridge.");
 
         // Add a marker for the UMD campus
-        const marker = L.marker([46.82, -92.085]).addTo(map);
-        marker.bindPopup("<b>University of Minnesota Duluth</b><br>A great place to learn about GIS!").openPopup();
+        const UMDcampusMarker = L.marker([46.82, -92.085]).addTo(map);
+        UMDcampusMarker.bindPopup("<b>University of Minnesota Duluth</b><br>A great place to learn about GIS!").openPopup();
+
+        //add a marker for enger tower
+        const EngerTowerMarker = L.marker([46.7765, -92.1230 ]).addTo(map);
+        EngerTowerMarker.bindPopup("<b>Enger Tower</b><br>one of the best panoramic views of Duluth, the harbor,  and Lake Superior.");
+       
+        //add a marker for lester park
+        const lesterParkMarker = L.marker([46.8498, -91.9935]).addTo(map);
+        lesterParkMarker.bindPopup(`<b>Lester Park</b><br>Lester Park has hiking and biking trails, waterfalls, and a great cliff jumping spot if youre feeling risky `);
+
     </script>
+    <p>This web map shows a few examples of sightseeing around Duluth. 
+        Many of these locations are accessible year-round and provide entertainemnt for locals and vistors.</p>
 </body>
 </html>
